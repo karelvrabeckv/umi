@@ -1,6 +1,6 @@
 ## Zadání
 
-Chceme sestavovat koleje pro dětský vláček. Máme k dispozici rovné úseky, výhybky a zatáčky, přičemž zatáčky mají úhel 45°. Výsledná trať by měla být uzavřená (tj. vláček nesmí mít možnost z tratě vyjet v žádném směru) a nemělo by dojít k překrytí kolejí (mosty ani tunely nemáme).
+![](images/Assignment.png)
 
 ## 1
 
