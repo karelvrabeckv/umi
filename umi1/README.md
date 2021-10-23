@@ -10,7 +10,7 @@ Algoritmus pro řešení tohoto problému spočívá v rekurzivním prohledává
 
 K dispozici máme **rovné** (*straight*), **pravotočivé** (*curved*) koleje a dále **výhybky s odbočkou doprava** (*divergent*) a **výhybky s připojením zprava** (*convergent*). Některé sady však mají koleje pro vláček i zezdola (tzn. že pravotočivou kolej lze obrátit a získáme kolej levotočivou). Tato univerzalita však není v důsledku své složitosti v tomto řešení zohledněna. Koleje tudíž uvažujeme pouze na jedné straně.
 
-Základem pro řešení tohoto problému je přechod ze **spojitého** prostředí do **diskrétního**, a tedy zobrazení kolejí do kartézské soustavy souřadnic. Je důležité si uvědomit, že rovné a pravotočivé koleje jsou již součástí obou typů výhybek. Rovné koleje mají velikost 3, pravotočivé 2 a výhybky tak vzniknou kombinací předchozích. Vzhledem k tomu, že zatáčky mají úhel 45°, lze se po mřížce pohybovat až v 8 různých úhlech: 0°, 45°, 90°, 135°, 180°, 225°, 270° a 315° (tedy i diagonálně). Zatáčky kreslíme **pouze diagonálně**, avšak rovné úseky můžeme kreslit jak **horizontálně/vertikálně, tak i diagonálně** (avšak vždy se stejnou velikostí 3!). To může zejména u větších sad způsobovat pnutí mezi kolejemi.
+Základem pro řešení tohoto problému je přechod ze **spojitého** prostředí do **diskrétního**, a tedy zobrazení kolejí do kartézské soustavy souřadnic. Je důležité si uvědomit, že rovné a pravotočivé koleje jsou již součástí obou typů výhybek. Pro rovné koleje byla zvolena velikost 3, pro pravotočivé 2 a výhybky tak vzniknou kombinací předchozích. Vzhledem k tomu, že zatáčky mají úhel 45°, lze se po mřížce pohybovat jak **horizontálně** (příp. **vertikálně**), tak **diagonálně** (tedy v **8 různých úhlech**). Zatáčky kreslíme **pouze diagonálně**, avšak rovné úseky můžeme kreslit jak horizontálně/vertikálně, tak i diagonálně (avšak vždy se stejnou velikostí 3!). Toto velikostní zjednodušení může zejména u větších sad způsobovat malé napětí a pnutí mezi kolejemi.
 
 ![](images/1.png)
 
@@ -34,11 +34,11 @@ Na každém obrázku je uveden *výstup algoritmu* pro zadaný počet kolejí, *
 ![](images/6.png)
 ![](images/7.png)
 
-Následuje výstup pro **počty kolejí uvedené v zadání úlohy**. Algoritmu trvalo necelých **5 hodin** pro nalezení tohoto řešení. To svědčí o velké (exponenciální) složitosti prohledávání a nepraktičnosti pro velké sady kolejí.
+Následuje výstup pro **počty kolejí uvedené v zadání úlohy**. Algoritmu trvalo necelých **5 hodin** pro nalezení tohoto řešení. To svědčí o velké (exponenciální) složitosti prohledávání a nepraktičnosti algoritmu pro velké sady kolejí.
 
 ![](images/8a.png)
 
-Jako důkaz realizace jsou uvedeny i následující útržky spojitých variant. Bohužel nebyl k dispozici dostatečný počet kolejí, avšak pro ukázku snad postačuje.
+Jako důkaz realizace jsou uvedeny i následující útržky spojité varianty. Bohužel nebyl k dispozici dostatečný počet kolejí, avšak pro ukázku snad postačuje.
 
 ![](images/8b.png)
 
@@ -50,6 +50,6 @@ Naopak nedostatek pravotočivých kolejí způsobí **neuzavřenost tratě**. Po
 
 ![](images/No2.png)
 
-Výhybky způsobují **„rozdvojení“** rekurze. Počet divergentních a konvergentních výhybek tak musí být vždy **roven**, protože jinak riskujeme **neuzavřenost tratě**.
+Výhybky způsobují přidání dalšího počátečního bodu, pro který však musí existovat i bod koncový. Počet divergentních a konvergentních výhybek tak musí být vždy **roven**, protože jinak riskujeme **neuzavřenost tratě**.
 
 ![](images/No3.png)
