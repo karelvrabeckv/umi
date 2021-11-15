@@ -2,8 +2,8 @@
 
 from constants import N
 from helpers import (
+  get_domain_values,
   get_empty_cell,
-  get_vals,
 )
 
 """
@@ -11,14 +11,14 @@ Solve a sudoku with BACKJUMPING.
 """
 def bj(sudoku):
   # Create a duplicate of the sudoku
-  # that contains all FEASIBLE domain
+  # that contains all feasible domain
   # values in the case of unset
   # variables. If a variable is set,
   # there is only one specific value
   global domains
   domains = [
     [
-      get_vals(sudoku, row, col) if not sudoku[row][col] else [sudoku[row][col]]
+      get_domain_values(sudoku, row, col) if not sudoku[row][col] else [sudoku[row][col]]
       for col in range(N)
     ]
     for row in range(N)
@@ -55,17 +55,15 @@ def run(sudoku):
       # be successfully finished
       return (answer, {})
     elif (row, col) not in new_conflicts:
-      # One of the next empty cells
-      # was not filled, because it had
-      # so much conflicts in the
-      # previous cells. So it is jumping
-      # back to the last of these
-      # conflicts. Also, the sudoku must
-      # be reset until it
+      # One of the next empty cells was
+      # not filled, because it had so much
+      # conflicts. So it is jumping back to
+      # the last of these conflicts. Also,
+      # the sudoku must be reset until it
       sudoku[row][col] = 0
       return (False, new_conflicts)
     else:
-      # All feasible values are being
+      # All domain values are being
       # tested. It is gathering all of
       # their conflicts
       conflict_set.update(new_conflicts)

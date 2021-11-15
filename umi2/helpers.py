@@ -33,10 +33,9 @@ def get_empty_cell(sudoku, coords):
   return False
 
 """
-Get all the feasible values
-into the domain.
+Get all the feasible domain values.
 """
-def get_vals(sudoku, row, col):
+def get_domain_values(sudoku, row, col):
   values = [*VALUES]
 
   # Discard values from the row

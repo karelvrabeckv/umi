@@ -5,8 +5,8 @@ from constants import (
   ALLOWED,
 )
 from helpers import (
+  get_domain_values,
   get_empty_cell,
-  get_vals,
 )
 
 """
@@ -21,7 +21,7 @@ def dbt(sudoku):
   # there is only one specific value
   domains = [
     [
-      get_vals(sudoku, row, col) if not sudoku[row][col] else [sudoku[row][col]]
+      get_domain_values(sudoku, row, col) if not sudoku[row][col] else [sudoku[row][col]]
       for col in range(N)
     ]
     for row in range(N)
@@ -40,14 +40,15 @@ def dbt(sudoku):
     row, col = coords
 
     # Process all the domain values
-    # of the empty cell.
+    # of the empty cell
     allowed = []
     for val in domains[row][col]:
       if culprits[row][col][val - 1] == ALLOWED:
         followed, conflicts = check_conflicts(sudoku, row, col, val)
 
-        # Save conflicts of all the domain 
-        # values of the empty cell
+        # Save the conflicts of all
+        # the domain values of
+        # the empty cell
         if not followed:
           culprits[row][col][val - 1] = conflicts
         else:

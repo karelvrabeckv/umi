@@ -54,20 +54,23 @@ def run(sudoku):
       original_domains = duplicate_domains(domains)
 
       # Filter the domain values
-      # of the other cells
+      # of the other cells in
+      # the row, column and box
       if apply_basic_filter(row, col, val):
+        # Continue to the next
+        # empty cell
         if run(sudoku):
           return True
 
-      # Undo all the changes
+      # Undo all the changes if
+      # the next empty cells were
+      # filled wrong
       domains = original_domains
       sudoku[row][col] = 0
 
   return False
 
 def apply_basic_filter(row, col, val):
-  global domains
-
   # Modify the domain values in the row
   for j in range(N):
     if (j != col) and (val in domains[row][j]):

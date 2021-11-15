@@ -57,17 +57,20 @@ def run(sudoku):
       # Filter the domain values
       # of the other cells
       if apply_advanced_filter(row, col, val):
+        # Continue to the next
+        # empty cell
         if run(sudoku):
           return True
 
-      # Undo all the changes
+      # Undo all the changes if
+      # the next empty cells were
+      # filled wrong
       domains = original_domains
       sudoku[row][col] = 0
 
   return False
 
 def apply_advanced_filter(row, col, val):
-  global domains
   domains[row][col] = [val]
 
   # Fill a queue with all the arcs 
@@ -76,7 +79,7 @@ def apply_advanced_filter(row, col, val):
   # unequal)
   queue = get_arcs()
   
-  # Process all the arcs
+  # Process all the constrained arcs
   while queue:
     x_i, x_j = queue.pop(0)
 
@@ -91,7 +94,7 @@ def apply_advanced_filter(row, col, val):
         return False
       
       # Add all the neighbours (except
-      # x_j) into the queue.
+      # x_j) into the queue
       add_neighbours(x_i, x_j, queue)
 
   return True
@@ -120,7 +123,6 @@ def get_arcs():
   return arcs
 
 def revise(x_i, x_j):
-  global domains
   revised = False
 
   # Loop through the domain of x_i
@@ -133,14 +135,16 @@ def revise(x_i, x_j):
       if x != y:
         value_to_delete = False
 
-    # Delete the value from the domain of x_i
+    # Delete the value from
+    # the domain of x_i if it
+    # has no support
     if value_to_delete:
       domains[x_i[0]][x_i[1]].remove(x)
       revised = True
+
   return revised
 
 def add_neighbours(x_i, x_j, queue):
-  global domains
   x_i_row, x_i_col = x_i[0], x_i[1]
   x_j_row, x_j_col = x_j[0], x_j[1]
 

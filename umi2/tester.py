@@ -4,7 +4,6 @@ from algorithms.bt import bt
 from algorithms.mac_bt import mac_bt
 from algorithms.bj import bj
 from algorithms.dbt import dbt
-from algorithms.ddbt import ddbt
 from constants import (
   N,
   CAT_KEY,
@@ -14,20 +13,21 @@ from constants import (
   MAC_BT,
   BJ,
   DBT,
-  DDBT,
+  STMT,
+  SETUP,
 )
 from examples import examples
 from helpers import (
   duplicate_sudoku,
   output,
 )
-from time import process_time
+from timeit import timeit
 
 def run(algorithm, verbose):
+  print("")
   for num, example in enumerate(examples):
     sudoku = duplicate_sudoku(example[INST_KEY])
 
-    start = process_time() * 1000
     if algorithm == BT:
       bt(sudoku)
     elif algorithm == MAC_BT:
@@ -36,9 +36,8 @@ def run(algorithm, verbose):
       bj(sudoku)
     elif algorithm == DBT:
       dbt(sudoku)
-    elif algorithm == DDBT:
-      ddbt(sudoku)
-    end = process_time() * 1000
+
+    cpu_time = timeit(stmt = STMT, setup = SETUP, number = 1, globals = locals()) * 1000
 
     error = 0
     for i in range(N):
@@ -47,13 +46,12 @@ def run(algorithm, verbose):
           error = 1
     
     if verbose:
-      print("")
       print("=========================")
       print("[SUDOKU " + str(num + 1) + "]")
       print("=========================")
       print("Category: " + example[CAT_KEY])
       print("Result: " +  ("ERROR" if error else "SUCCESS"))
-      print("CPU time: " + str(format(end - start, ".3f")) + " MS")
+      print("CPU time: " + str(format(cpu_time, ".3f")) + " MS")
       print("Input:")
       output(example[INST_KEY])
       print("Output:")
@@ -61,12 +59,8 @@ def run(algorithm, verbose):
       print("Expected:")
       output(example[SOL_KEY])
     else:
-      if num == 0:
-        print("")
       print("[SUDOKU " + str(num + 1) + "]", end = " ")
       print("category: " + example[CAT_KEY], end = ", ")
       print("result: " +  ("ERROR" if error else "SUCCESS"), end = ", ")
-      print("CPU time: " + str(format(end - start, ".3f")) + " MS")
-
-    if num + 1 == len(examples):
-      print("")
+      print("cpu_time: " + str(format(cpu_time, ".3f")) + " MS")
+  print("")

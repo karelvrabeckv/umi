@@ -3,7 +3,6 @@ from constants import (
   MAC_BT,
   BJ,
   DBT,
-  DDBT,
 )
 from sys import argv
 from tester import run
@@ -14,7 +13,7 @@ if len(argv) not in {2, 3}:
   exit()
 
 # Check the algorithm
-if argv[1] not in {BT, MAC_BT, BJ, DBT, DDBT}:
+if argv[1] not in {BT, MAC_BT, BJ, DBT}:
   print("[ERROR] Wrong algorithm.")
   exit()
 
