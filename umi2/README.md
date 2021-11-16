@@ -8,7 +8,7 @@
 
 Z výše uvedených algoritmů jsem vypracoval **BT** (*backtracking* včetně *forward checking*), **MAC_BT** (*backtracking* včetně *maintaining arc consistency*), **BJ** (*backjumping*) a **DBT** (*dynamic backtracking*). Jejich implementace se nachází v příslušných souborech ve složce **algorithms**. Při tvorbě jsem se snažil v maximální míře vycházet z pseudokódů uvedených v přednáškách. I přesto jsou v implementaci drobné rozdíly, tudíž jsem celý kód **příslušně okomentoval** pro rychlejší pochopení.
 
-Pro testování jsem použil **8 náhodně vybraných zadání sudoku** rozřazených do různých kategorií obtížnosti (pro člověka). U každé instance byl navíc měřen čas CPU (vzhledem k malému počtu instancí však nelze činit obecné závěry). Níže uvedené výsledky pouze dokumentují **správnost jednotlivých algoritmů**.
+Pro testování jsem použil **8 náhodně vybraných zadání sudoku** rozřazených do různých kategorií obtížnosti (pro člověka). U každé instance byl navíc měřen **čas CPU** (vzhledem k malému počtu instancí však nelze činit obecné závěry). Níže uvedené výsledky pouze dokumentují **správnost jednotlivých algoritmů**.
 
 ## Spuštění
 
@@ -35,7 +35,7 @@ Pro testování jsem použil **8 náhodně vybraných zadání sudoku** rozřaze
 
 ![](images/DBT.png)
 
-## Použité sudoku a získaná řešení
+## Použitá zadání a získaná řešení
 
 **SUDOKU 1** (*lehké*):
 
